@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe do Produto - BM Burger</title>
+    <link rel="stylesheet" href="../../style.css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Link para o Font Awesome -->
+    <style>
+        /* Estilo do modal */
+        .modal {
+            display: none; /* Oculto por padrão */
+            position: fixed; /* Fixo */
+            z-index: 1; /* Em cima */
+            left: 0;
+            top: 0;
+            width: 100%; /* Largura total */
+            height: 100%; /* Altura total */
+            overflow: auto; /* Habilita rolagem se necessário */
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro com opacidade */
+            justify-content: center; /* Centraliza */
+            align-items: center; /* Centraliza */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .customization {
+            margin: 20px 0; /* Espaçamento em torno das opções */
+        }
+
+        .customization label {
+            display: flex; /* Alinha os elementos horizontalmente */
+            align-items: center; /* Centraliza verticalmente */
+            margin: 10px 0; /* Espaçamento entre as opções */
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Alinha à direita */
+        }
+
+        .quantity-controls button {
+            background-color: #ddd; /* Cor de fundo dos botões */
+            border: none; /* Sem borda */
+            padding: 5px 10px; /* Padding dos botões */
+            cursor: pointer; /* Mão ao passar o mouse */
+            margin: 0 5px; /* Espaçamento entre botões */
+        }
+
+        .quantity-input {
+            width: 30px; /* Largura do campo de entrada */
+            text-align: center; /* Centraliza o texto */
+            border: 1px solid #ccc; /* Borda do campo */
+            border-radius: 5px; /* Bordas arredondadas */
+        }
+
+        /* Estilo do botão de adicionar ao pedido */
+        .add-to-cart {
+            display: block; /* Faz o botão ocupar toda a largura disponível */
+            margin-top: 20px; /* Espaçamento acima do botão */
+            padding: 10px 20px; /* Padding do botão */
+            /* background-color: #28a745; Cor de fundo do botão */
+            color: white; /* Cor do texto do botão */
+            border: none; /* Sem borda */
+            border-radius: 5px; /* Bordas arredondadas */
+            cursor: pointer; /* Mão ao passar o mouse */
+            text-align: center; /* Centraliza o texto */
+            width: 150px; /* Largura do botão */
+            margin-left: auto; /* Alinha o botão à direita */
+        }
+
+        /* Estilo do campo de observação */
+        .observation {
+            margin-top: 20px; /* Espaçamento acima do campo */
+        }
+
+        .observation label {
+            display: block; /* Exibe o label em bloco */
+            margin-bottom: 5px; /* Espaçamento abaixo do label */
+        }
+
+        .observation textarea {
+            width: 100%; /* Largura total */
+            height: 60px; /* Altura do campo de texto */
+            border: 1px solid #ccc; /* Borda do campo */
+            border-radius: 5px; /* Bordas arredondadas */
+            padding: 10px; /* Padding interno */
+            resize: none; /* Desabilita redimensionamento */
+        }
+
+        /* Estilo do campo de seleção de molhos */
+        .sauces {
+            margin-top: 20px; /* Espaçamento acima do campo */
+        }
+
+        .sauces select {
+            width: 100%; /* Largura total */
+            border: 1px solid #ccc; /* Borda do campo */
+            border-radius: 5px; /* Bordas arredondadas */
+            padding: 10px; /* Padding interno */
+        }
+    </style>
+</head>
+<body>
+    <section class="categoria1"><a href="../../Cardápio.html">&#x2B05;</a>
+        <h2>Detalhe do produto</h2>
+        <div class="container">
+            <!-- Imagem do Produto -->
+            <div class="product-image" style="text-align: center; position: relative;">
+                <img src="../../imagem/BARBECUE" alt="Cheese Duplo" class="product-image" height="300px" width="300px">
+                <!-- Ícone de Lupa -->
+                <span class="icon" style="position: absolute; top: 10px; right: 10px; cursor: pointer;" aria-label="Ver imagem em tamanho maior">
+                    <i class="fas fa-search-plus"></i>
+                </span>
+            </div>
+            <section class="categoria">
+                <article class="item1">
+                    <div class="text-content1">
+                        <h3>CHEESE DUPLO</h3>
+                        <p class="paragrafo">PÃO, HAMBÚRGUER DE CARNE 160GR, MOLHO BARBECUE, BACON FATIADO, FATIAS DE CHEDDAR OU
+                                MUÇARELA</p>
+                        <div class="paragrafo1"><p>R$ 28,00</p></div>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- Informações do Produto -->
+        
+        <!-- Opções de Personalização -->
+        <h2>Adicionais BURGER</h2>
+        <p class="paragrafo">Escolha até 5 opções</p>
+        
+        <div class="customization">
+            <label>
+                Adicional Filé de Frango 160gr ( R$ 7,00)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('frango')">-</button>
+                    <input type="number" id="frango" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('frango')">+</button>
+                </div>
+               <hr>
+            </label>
+            <hr>
+            <label>
+                Adicional Burger 160gr (R$ 9,00)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('Burger')">-</button>
+                    <input type="number" id="Burger" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('Burger')">+</button>
+                </div>
+            </label>
+            <hr>
+            <label>
+                Adicional Bacon (R$ 4,00)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('Bacon')">-</button>
+                    <input type="number" id="Bacon" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('Bacon')">+</button>
+                </div>
+            </label>
+            <hr>
+            <label>
+                Adicional Cheddar(R$ 3,00)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('Cheddar')">-</button>
+                    <input type="number" id="Cheddar" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('Cheddar')">+</button>
+                </div>
+            </label>
+            <hr>
+            <label>
+                Adicional Muçarela (R$ 3,00)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('Muçarela')">-</button>
+                    <input type="number" id="Muçarela" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('Muçarela')">+</button>
+                </div>
+            </label>
+            <hr>
+            <label>
+                Adicional Cebola Roxa (R$ 2,50)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('Cebola')">-</button>
+                    <input type="number" id="Cebola" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('Cebola')">+</button>
+                </div>
+            </label>
+            <hr>
+            <label>
+                Adicional Capitury (R$ 4,00)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('Capitury')">-</button>
+                    <input type="number" id="Capitury" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('Capitury')">+</button>
+                </div>
+            </label>
+            <hr>
+            <label>
+                Adicional Ovo (R$ 2,00)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('egg')">-</button>
+                    <input type="number" id="egg" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('egg')">+</button>
+                </div>
+            </label>
+            <hr>
+            <label>
+                Adicional Picles (R$ 4,00)
+                <div class="quantity-controls">
+                    <button onclick="decreaseQuantity('Picles')">-</button>
+                    <input type="number" id="Picles" class="quantity-input" value="0" min="0" max="5" readonly>
+                    <button onclick="increaseQuantity('Picles')">+</button>
+                </div>
+            </label>
+            <hr>
+            
+        </div>
+<!-- Opção de Tipo de Queijo -->
+<div class="cheese-type">
+        <h3>Escolha o tipo de queijo:</h3>
+       <div class="queijo-p"> <p >Cheddar</p></div>
+        <div class="queijo"><label>
+            <input type="radio" name="cheese" value="cheddar" required>
+           
+        </label>
+</div>
+<hr>
+<p>Muçarela</p>
+       <div class="queijo"> <label>
+        
+            <input type="radio" name="cheese" value="mozzarella">
+            
+        </label></div>
+<hr>
+        <p>Sem Queijo</p>
+       <div class="queijo"><label>
+            <input type="radio" name="cheese" value="sem_queijo">
+            
+        </label></div>
+    </div>
+    
+        <!-- Opção de Molhos -->
+        <div class="sauces">
+            <label for="sauce">Escolha um molho:</label>
+            <select id="sauce">
+                <option value="none">Nenhum</option>
+                <option value="ketchup">Ketchup</option>
+                <option value="maionese">Maionese</option>
+                <option value="mostarda">Mostarda</option>
+                <option value="barbecue">Barbecue</option>
+                <option value="picanha">Molho Picanha</option>
+            </select>
+        </div>
+
+        <!-- Campo de Observação -->
+        <div class="observation">
+            <label for="observation">Observações:</label>
+            <textarea id="observation" placeholder="Digite suas observações aqui..."></textarea>
+        </div>
+
+        <!-- Botão de Adicionar ao Pedido -->
+        <button class="add-to-cart" aria-label="Adicionar ao Pedido">Adicionar ao Pedido</button>
+    </div>
+
+    <!-- Modal para Imagem Ampliada -->
+    <div id="imageModal" class="modal">
+        <span class="close" role="button" tabindex="0">&times;</span>
+        <img class="modal-content" id="modalImage" src="../../imagem/BARBECUE" alt="Cheese Duplo">
+    </div>
+
+    <script>
+        // Funcionalidade da Lupa
+        const icon = document.querySelector('.icon');
+        const modal = document.getElementById('imageModal');
+        const closeBtn = document.querySelector('.close');
+
+        icon.onclick = function() {
+            modal.style.display = 'flex'; // Mostra o modal
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none'; // Esconde o modal
+        }
+
+        // Fecha o modal se o usuário clicar fora da imagem
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none'; // Esconde o modal
+            }
+        }
+
+        // Fecha o modal ao pressionar a tecla Esc
+        window.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                modal.style.display = 'none'; // Esconde o modal
+            }
+        });
+
+        // Funções para aumentar e diminuir a quantidade
+        function increaseQuantity(item) {
+            const input = document.getElementById(item);
+            let value = parseInt(input.value);
+            if (value < 5) {
+                input.value = value + 1;
+            }
+        }
+
+        function decreaseQuantity(item) {
+            const input = document.getElementById(item);
+            let value = parseInt(input.value);
+            if (value > 0) {
+                input.value = value - 1;
+            }
+        }
+    </script>
+</body>
+</html>

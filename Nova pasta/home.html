@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BM Burger</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; 
+            position: relative; 
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo {
+            margin-bottom: 10px;
+        }
+
+        .status {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px;
+            background-color: #eaeaea;
+            margin: 20px;
+            border-radius: 8px;
+        }
+
+        .hero h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: auto; 
+            width: 100%;
+        }
+
+        .footer-links {
+            margin: 10px 0;
+        }
+
+        .footer-links a {
+            color: #f0c040;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .social-icons {
+            margin: 10px 0;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 1.5em;
+            color: #f0c040;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #fff;
+        }
+
+        .contact-info {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 300px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo img {
+            max-width: 100px; 
+            border-radius: 20px; 
+        }
+
+        .brand {
+            position: absolute;
+            right: 20px; 
+            bottom: 20px; 
+            opacity: 0.3; 
+            font-size: 1.2em; 
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="imagem/logo bm .jpg" alt="Logo do BM Burger" class="img-fluid"> 
+            <h1>BM Burger</h1>
+        </div>
+        <div class="status">
+            <p id="status-text">Estamos abertos!</p>
+            <button class="btn btn-light" onclick="toggleStatus()">Alterar Status</button> 
+        </div>
+        <nav>
+            <ul class="nav justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="#" onclick="openModal('login')">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="Cardápio.html" onclick="openModal('visitante')">Entrar como Visitante</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Bem-vindo ao BM Burger</h2>
+            <p>Experimente nossos deliciosos hambúrgueres e muito mais!</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="Cardápio.html">Cardapio</a>
+            <a href="sobrenos.html">Sobre Nós</a>
+            <a href="contato.html">Contato</a>
+        </div>
+        <div class="social-icons">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <div class="contact-info">
+            <p>📞 (16) 99115-3644</p>
+            <p>✉️ studio@bmburger.com.br</p>
+        </div>
+        <p>&copy; 2024 BM Burger. Todos os direitos reservados.</p>
+    </footer>
+
+    <div class="brand">
+        E quem não sai de lá
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Login</h2>
+            <div id="modal-body">
+                <form id="login-form" onsubmit="handleLogin(event)" style="display: none;">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuário:</label>
+                        <input type="text" id="username" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Senha:</label>
+                        <input type="password" id="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </form>
+                <div id="visitante-form" style="display: none;">
+                    <p>Entre como visitante e navegue pelo nosso cardápio!</p>
+                    <button class="btn btn-secondary" onclick="closeModal()">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isOpen = true;
+
+        function toggleStatus() {
+            isOpen = !isOpen;
+            const statusText = document.getElementById('status-text');
+            statusText.textContent = isOpen ? 'Estamos abertos!' : 'Estamos fechados!';
+        }
+
+        function openModal(type) {
+            const modal = document.getElementById('modal');
+            const loginForm = document.getElementById('login-form');
+            const visitanteForm = document.getElementById('visitante-form');
+            const modalTitle = document.getElementById('modal-title');
+            
+            if (type === 'login') {
+                modalTitle.textContent = 'Login';
+                loginForm.style.display = 'block';
+                visitanteForm.style.display = 'none';
+            } else {
+                modalTitle.textContent = 'Entrar como Visitante';
+                loginForm.style.display = 'none';
+                visitanteForm.style.display = 'block';
+            }
+            
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === "admin" && password === "senha") { 
+                alert("Login bem-sucedido!");
+                closeModal();
+            } else {
+                alert("Usuário ou senha inválidos.");
+            }
+        }
+    </script>
+    
+    <!-- Font Awesome CDN -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

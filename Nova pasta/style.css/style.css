@@ -1,0 +1,215 @@
+/* Reset e Fontes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Configurações Globais */
+body {
+    background-color: #1F1D2B; /* fundo escuro */
+    color: #FFFFFF; /* texto em branco para legibilidade */
+    padding: 0 300px;
+    height: 60%;
+}
+
+/* Estilo do Cabeçalho com Logo e Menu */
+.topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #252836; /* fundo escuro 2 */
+    color: #FFA07A; /* laranja suave */
+}
+
+.logo img {
+    width: 100px;
+    height: auto;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    color: #FFA07A; /* laranja suave */
+}
+
+.menu ul li a {
+    color: #FFA07A; /* laranja suave */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    text-transform: uppercase;
+}
+
+.menu ul li a:hover {
+    background-color: #2D303E; /* fundo escuro 3 */
+}
+
+/* Título Principal */
+.titulo h1 {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 2em;
+    color: #FFA07A; /* laranja suave */
+}
+
+/* Categoria e Itens do Cardápio */
+.categoria {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.categoria h2 {
+    background-color: #232432; /* fundo escuro 7 */
+    padding: 10px;
+    border-radius: 5px;
+    color: #FFA07A; /* laranja suave */
+}
+
+/* Estilo dos Artigos como Botões */
+.item {
+    background-color: #252836; /* fundo escuro 2 */
+    margin-top: 10px;
+    border: 1px solid #2D303E; /* borda escura */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.item:hover {
+    background-color: #2D303E; /* fundo escuro 3 ao hover */
+    transform: scale(1.02);
+}
+
+.item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Alinhamento do Conteúdo e Imagem */
+.text-content {
+    flex: 1;
+    margin-right: 16px;
+}
+
+.item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Estilo dos Títulos e Textos */
+.item h3 {
+    color: #FFA07A; /* laranja suave */
+}
+
+.item p {
+    margin: 5px 0;
+    color: #FFFFFF; /* texto em branco para frases longas */
+}
+
+/* Logo da empresa */
+.topo .logo img {
+    width: 70px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+}
+
+.entrega {
+    border: 5px solid #FFA07A; /* laranja suave */
+}
+
+.rodape {
+    background-color: #1F1D2B; /* Fundo do rodapé com cor escura */
+    padding: 20px;
+    text-align: center; /* Centraliza o conteúdo no rodapé */
+}
+
+.imagem-rodape {
+    width: 500px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin-top: 10px;
+}
+
+.categoria1 a {
+    font-size: 30px;
+    color: white;
+    text-decoration: none;
+    
+}
+
+.add-to-cart{
+    background-color: #ef5f26;
+}
+.categoria1 h2{
+    background-color: #2D303E;
+    color:#d44b14 ;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px ;
+}
+
+.sobre h3 {
+    margin-bottom: 20px;
+    background-color: #2D303E;
+    color:#d44b14 ;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px ;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.categoria2 {
+    font-size: 27px;
+    margin-bottom: 20px;
+    text-align: center;
+    text-transform: uppercase;;
+}
+
+.categoria2 a{
+    text-decoration: none;
+    color: white;
+}
+
+.rodape {
+    background-color: #1F1D2B; /* Fundo do rodapé com cor escura */
+    padding: 20px;
+    text-align: center; /* Centraliza o conteúdo no rodapé */
+}
+
+.imagem-rodape {
+    width: 500px; /* Ajuste o tamanho conforme necessário */
+    height: auto;
+    margin-top: 10px;
+}
+
+/*teste*/
+
+.categoria2 p {
+    font-size: 18px;
+    line-height: 1.8;
+    text-align: justify;
+    color: #4a4a4a;
+    margin-top: 20px;
+}
+
+.categoria2 b {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+
+

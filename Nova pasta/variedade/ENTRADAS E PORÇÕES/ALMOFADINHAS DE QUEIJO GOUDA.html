@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhe do Produto - BM Burger</title>
+    <link rel="stylesheet" href="../../style.css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .customization {
+            margin: 20px 0;
+        }
+
+        .customization label {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+
+        .quantity-controls button {
+            background-color: #ddd;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .quantity-input {
+            width: 30px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-to-cart {
+            display: block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            width: 150px;
+            margin-left: auto;
+        }
+
+        .observation {
+            margin-top: 20px;
+        }
+
+        .observation label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .observation textarea {
+            width: 100%;
+            height: 60px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            resize: none;
+        }
+
+        .sauces {
+            margin-top: 20px;
+        }
+
+        .sauces select {
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section class="categoria1"><a href="../../Cardápio.html">&#x2B05;</a>
+        <h2>Detalhe do produto</h2>
+        <div class="container">
+            <div class="product-image" style="text-align: center; position: relative;">
+                <img src="../../imagem/ALMOFADINHAS DE QUEIJO GOUDA" alt="Cheese Duplo" class="product-image" height="300px" width="300px">
+                <span class="icon" style="position: absolute; top: 10px; right: 10px; cursor: pointer;" aria-label="Ver imagem em tamanho maior">
+                    <i class="fas fa-search-plus"></i>
+                </span>
+            </div>
+            <section class="categoria">
+                <article class="item1">
+                    <div class="text-content1">
+                        <h3>ALMOFADINHAS DE QUEIJO GOUDA</h3>
+                        <p class="paragrafo">NÃO HÁ NADA IGUAL, PROVEM</p>
+                        <div class="paragrafo1"><p>A partir deR$ 15,00</p></div>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <div class="cheese-type">
+            <h3>Escolha 1 opção</h3>
+            <div class="queijo-p"><p>5 UNIDADES</p>
+            <p>R$ 15,00</p></div>
+            <div class="queijo"><label>
+                <input type="radio" name="cheese" value="cheddar" required>
+            </label></div>
+            <hr>
+            <br>
+            <div><p>8 UNIDADES</p>
+            <p>R$ 20,00</p></div>
+            <div class="queijo"><label>
+                <input type="radio" name="cheese" value="mozzarella">
+            </label></div>
+            <hr>
+            <br>
+            <p>12 UNIDADES</p>
+            <p>R$ 27,00</p>
+            <div class="queijo"><label>
+                <input type="radio" name="cheese" value="sem_queijo">
+            </label></div>
+        </div>
+
+        <div class="sauces">
+            <label for="sauce">Escolha um molho:</label>
+            <select id="sauce">
+                <option value="none">Nenhum</option>
+                <option value="ketchup">Ketchup</option>
+                <option value="maionese">Maionese</option>
+                <option value="mostarda">Mostarda</option>
+                <option value="barbecue">Barbecue</option>
+                <option value="picanha">Molho Picanha</option>
+            </select>
+        </div>
+
+        <div class="observation">
+            <label for="observation">Observações:</label>
+            <textarea id="observation" placeholder="Digite suas observações aqui..."></textarea>
+        </div>
+
+        <button class="add-to-cart" aria-label="Adicionar ao Pedido">Adicionar ao Pedido</button>
+    </div>
+
+    <div id="imageModal" class="modal">
+        <span class="close" role="button" tabindex="0">&times;</span>
+        <img class="modal-content" id="modalImage" src="../../imagem/ALMOFADINHAS DE QUEIJO GOUDA" alt="Cheese Duplo">
+    </div>
+
+    <script>
+        const icon = document.querySelector('.icon');
+        const modal = document.getElementById('imageModal');
+        const closeBtn = document.querySelector('.close');
+
+        icon.onclick = function() {
+            modal.style.display = 'flex';
+        }
+
+        closeBtn.onclick = function() {
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                modal.style.display = 'none';
+            }
+        });
+
+        function increaseQuantity(item) {
+            const input = document.getElementById(item);
+            let value = parseInt(input.value);
+            if (value < 5) {
+                input.value = value + 1;
+            }
+        }
+
+        function decreaseQuantity(item) {
+            const input = document.getElementById(item);
+            let value = parseInt(input.value);
+            if (value > 0) {
+                input.value = value - 1;
+            }
+        }
+    </script>
+</body>
+</html>
